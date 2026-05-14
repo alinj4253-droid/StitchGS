@@ -128,19 +128,6 @@ For train/eval split datasets, provide a sibling `val/` directory alongside `tra
 
 ---
 
-## Authors
-
-| Name | ORCID |
-|---|---|
-| Jinhe Su | [![ORCID](https://img.shields.io/badge/ORCID-0000--0003--1707--5685-green)](https://orcid.org/0000-0003-1707-5685) |
-| Shengfang Pan | [![ORCID](https://img.shields.io/badge/ORCID-0009--0005--0879--599X-green)](https://orcid.org/0009-0005-0879-599X) |
-| Huanxin Zhu | — |
-| Siyu Chen | — |
-| Yaoming Huang | — |
-| Yixin Zhou | — |
-
----
-
 ## License
 
 Released for non-commercial research use. See [LICENSE](LICENSE). Parts derived from [3D Gaussian Splatting (INRIA)](https://github.com/graphdeco-inria/gaussian-splatting) retain their original license.
