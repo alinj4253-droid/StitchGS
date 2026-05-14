@@ -26,5 +26,6 @@ processed_blocks*/
 *.zip
 
 submodules/*
-!submodules/README.md
-
+!submodules/diff-gaussian-rasterization/
+!submodules/simple-knn/
+!submodules/fused-ssim/

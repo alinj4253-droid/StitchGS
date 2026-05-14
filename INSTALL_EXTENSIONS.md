@@ -1,6 +1,6 @@
 # CUDA Extensions
 
-This public release does not bundle third-party CUDA extension source trees. The code expects the following local layout under `submodules/`:
+This repository tracks third-party CUDA extension source trees as Git submodules. A normal `git clone` only checks out the submodule pointers; use `--recursive` or run `git submodule update --init --recursive` before installing.
 
 ```text
 submodules/
@@ -14,7 +14,7 @@ submodules/
 - `diff-gaussian-rasterization`
   Upstream: `https://github.com/graphdeco-inria/diff-gaussian-rasterization.git`
 - `simple-knn`
-  Upstream: `https://github.com/graphdeco-inria/simple-knn.git`
+  Upstream: `https://gitlab.inria.fr/bkerbl/simple-knn.git`
 
 ## Optional
 
@@ -25,15 +25,17 @@ submodules/
 ## Installation
 
 ```bash
-mkdir -p submodules
-git clone https://github.com/graphdeco-inria/diff-gaussian-rasterization.git submodules/diff-gaussian-rasterization
-git clone https://github.com/graphdeco-inria/simple-knn.git submodules/simple-knn
-git clone https://github.com/rahul-goel/fused-ssim.git submodules/fused-ssim
+git submodule update --init --recursive
 
 pip install ./submodules/diff-gaussian-rasterization
 pip install ./submodules/simple-knn
 pip install ./submodules/fused-ssim --no-build-isolation
 ```
 
-If you use forks or patched copies of these extensions, keep the same directory names so the import paths remain unchanged.
+You can also clone everything in one step:
 
+```bash
+git clone --recursive https://github.com/alinj4253-droid/StitchGS.git
+```
+
+If you use forks or patched copies of these extensions, keep the same directory names so the import paths remain unchanged.
