@@ -1,5 +1,5 @@
 scene_dirpath: ./datasets/residence/train
-output_dirpath: ./output/residence_006
+output_dirpath: ./output/residence
 white_background: false
 sh_degree: 3
 evaluate: false
@@ -29,8 +29,8 @@ depth_l1_weight_final: 0.1
 reproj_l1_weight_init: 0.01
 reproj_l1_weight_final: 0.5
 depth_inv_loss: true
-pesudo_loss: true
-pesudo_loss_start: 5000
+pseudo_loss: true
+pseudo_loss_start: 5000
 percent_dense: 0.01
 densify_grad_threshold: 0.0002
 densification_interval: 200

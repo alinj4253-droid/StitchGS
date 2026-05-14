@@ -1,0 +1,67 @@
+StitchGS License
+
+Copyright (C) 2026, Jimei University
+All rights reserved.
+
+The StitchGS-specific contributions in this repository — including
+scene_partition.py, merge.py, finetune_qat.py, compress_adaptive.py,
+and the seam-aware evaluation code in metrics.py — are free for
+non-commercial, research and evaluation use under the terms of this
+license.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+3. Neither the name of Jimei University nor the names of its
+   contributors may be used to endorse or promote products derived
+   from this software without specific prior written permission.
+
+4. This software may not be used, in whole or in part, for commercial
+   purposes (including commercial products, services, internal business
+   processes, or research conducted for commercial entities) without
+   prior written permission from the copyright holders.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+------------------------------------------------------------------------------
+Third-Party Components
+------------------------------------------------------------------------------
+
+Portions of this repository are derived from or build upon the following
+third-party codebases:
+
+1. 3D Gaussian Splatting (graphdeco-inria/gaussian-splatting)
+   Copyright (C) 2023, Inria, GRAPHDECO research group
+   Licensed for non-commercial, research and evaluation use.
+   Affected files: scene/gaussian_model.py, gaussian_renderer/__init__.py,
+   utils/general_utils.py, utils/graphics_utils.py, utils/image_utils.py,
+   utils/loss_utils.py, utils/sh_utils.py, scene/cameras.py,
+   scene/colmap_loader.py, scene/scene_loader.py
+
+2. LPIPS (richzhang/PerceptualSimilarity)
+   Copyright (c) 2018, Richard Zhang, Phillip Isola, Alexei A. Efros,
+   Eli Shechtman, Oliver Wang
+   Licensed under BSD 2-Clause License.
+   Affected files: utils/lpipsPyTorch/
+
+Users are responsible for complying with the licenses of all third-party
+components. Commercial use restrictions from upstream components apply
+regardless of this license.

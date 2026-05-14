@@ -199,10 +199,12 @@ def finetune(args):
     gaussians.save_ply(save_path)
 
 if __name__ == "__main__":
+    import yaml
     parser = ArgumentParser(description="Quantization-Aware Finetuning")
-    parser.add_argument("--source_path", "-s", required=True, type=str)
-    parser.add_argument("--merged_ply", "-m", required=True, type=str)
-    parser.add_argument("--output_path", "-o", required=True, type=str)
+    parser.add_argument("--config", "-c", type=str, default=None, help="config file; infers -s and -o when omitted")
+    parser.add_argument("--source_path", "-s", type=str, default=None)
+    parser.add_argument("--merged_ply", "-m", type=str, default=None, help="merged PLY; defaults to <output_path>/point_cloud_merged_seed{seed}.ply")
+    parser.add_argument("--output_path", "-o", type=str, default=None)
     parser.add_argument("--iterations", type=int, default=7000)
     parser.add_argument("--lambda_dssim", type=float, default=0.2)
     parser.add_argument("--white_background", action="store_true")
@@ -215,4 +217,19 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=0)
 
     args = parser.parse_args()
+
+    if args.config is not None:
+        with open(args.config) as f:
+            _cfg = yaml.safe_load(f)
+        if args.source_path is None:
+            args.source_path = _cfg["scene_dirpath"]
+        if args.output_path is None:
+            args.output_path = _cfg["output_dirpath"]
+
+    if args.source_path is None or args.output_path is None:
+        parser.error("provide --config / -c or both --source_path / -s and --output_path / -o")
+
+    if args.merged_ply is None:
+        args.merged_ply = os.path.join(args.output_path, f"point_cloud_merged_seed{args.seed}.ply")
+
     finetune(args)

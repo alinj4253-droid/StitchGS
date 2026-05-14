@@ -1,5 +1,6 @@
 import os
 import json
+import yaml
 import argparse
 import numpy as np
 import torch
@@ -36,12 +37,19 @@ def set_seed(seed: int):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--optimized_path", "-o", type=str, required=True)
+    parser.add_argument("--config", "-c", type=str, default=None, help="config file; infers --optimized_path when -o is omitted")
+    parser.add_argument("--optimized_path", "-o", type=str, default=None)
     parser.add_argument("--enable_icp", action="store_true")
     parser.add_argument("--sharpness", type=float, default=30.0)
     parser.add_argument("--k_neighbors", type=int, default=5)
     parser.add_argument("--seed", type=int, default=0)
     args = parser.parse_args()
+
+    if args.optimized_path is None:
+        if args.config is None:
+            parser.error("provide --config / -c or --optimized_path / -o")
+        with open(args.config) as f:
+            args.optimized_path = yaml.safe_load(f)["output_dirpath"]
 
     set_seed(args.seed)
 

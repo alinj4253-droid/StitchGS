@@ -113,12 +113,24 @@ def save_adaptive_ply(path, xyz, f_dc, f_rest, opacities, scale, rotation):
     print(f"[Save] Done: {path}")
 
 def main():
+    import yaml
     parser = argparse.ArgumentParser(description="Adaptive SH Pruning & Quantization")
-    parser.add_argument("--input", "-i", required=True, type=str)
-    parser.add_argument("--output", "-o", required=True, type=str)
-
+    parser.add_argument("--config", "-c", type=str, default=None, help="config file; infers -i and -o from output_dirpath when omitted")
+    parser.add_argument("--input", "-i", type=str, default=None)
+    parser.add_argument("--output", "-o", type=str, default=None)
     parser.add_argument("--threshold", "-t", type=float, default=0.02)
     args = parser.parse_args()
+
+    if args.config is not None:
+        with open(args.config) as f:
+            _out = yaml.safe_load(f)["output_dirpath"]
+        if args.input is None:
+            args.input = os.path.join(_out, "point_cloud_finetuned_final.ply")
+        if args.output is None:
+            args.output = os.path.join(_out, "point_cloud_quantized.ply")
+
+    if args.input is None or args.output is None:
+        parser.error("provide --config / -c or both --input / -i and --output / -o")
 
     xyz, f_dc, f_rest, opacities, scale, rotation = load_ply_generic(args.input)
 

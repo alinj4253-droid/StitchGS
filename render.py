@@ -145,11 +145,18 @@ def render_loop(cfg, scene_gaussian, image_rendered_dirpath, views_info_list, co
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--optimized_path", "-o", type=str, required=True)
+    parser.add_argument("--config", "-c", type=str, default=None, help="config file; infers --optimized_path when -o is omitted")
+    parser.add_argument("--optimized_path", "-o", type=str, default=None)
     parser.add_argument("--train_eval_split", action="store_true")
     parser.add_argument("--eval_only", action="store_true", help="when train_eval_split, only render eval split")
     parser.add_argument("--no_save_depth", action="store_true", help="do not save depth maps (npy) for seam metrics")
     args = parser.parse_args()
+
+    if args.optimized_path is None:
+        if args.config is None:
+            parser.error("provide --config / -c or --optimized_path / -o")
+        with open(args.config) as f:
+            args.optimized_path = yaml.load(f, Loader=yaml.FullLoader)["output_dirpath"]
 
     config_filepath = os.path.join(args.optimized_path, "config.yaml")
     if not os.path.exists(config_filepath):

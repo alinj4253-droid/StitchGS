@@ -28,10 +28,6 @@ try:
 except:
     FUSED_SSIM_AVAILABLE = False
 
-
-
-
-
 class OrderedIndexSampler(Sampler):
     def __init__(self, indices):
         self.indices = indices
@@ -41,10 +37,6 @@ class OrderedIndexSampler(Sampler):
 
     def __len__(self):
         return len(self.indices)
-
-
-
-
 
 def _project_to_plane(c, vertical_axis="z"):
     if vertical_axis == "z": return np.array([c[0], c[1]])

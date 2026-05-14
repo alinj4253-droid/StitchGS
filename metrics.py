@@ -292,7 +292,7 @@ def generate_paper_report(output_dir, eval_metrics, exp_stats):
 
     report = []
     report.append("==================================================")
-    report.append("          BlockGaussian Paper Metrics Report      ")
+    report.append("            StitchGS Paper Metrics Report         ")
     report.append("==================================================")
     report.append(f"Scene Path: {output_dir}")
     report.append("")
@@ -602,7 +602,8 @@ def evaluate(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Metrics calculation script parameters.")
-    parser.add_argument("--optimized_path", "-o", type=str, required=True, help="optimized scene dirpath")
+    parser.add_argument("--config", "-c", type=str, default=None, help="config file; infers --optimized_path when -o is omitted")
+    parser.add_argument("--optimized_path", "-o", type=str, default=None, help="optimized scene dirpath")
     parser.add_argument("--train_eval_split", action="store_true", help="train and eval is stored sperately")
     parser.add_argument("--eval_only", action="store_true", help="only evaluate eval split")
 
@@ -614,6 +615,12 @@ if __name__ == "__main__":
     parser.add_argument("--gt_depth_subdir", type=str, default="depth_any")
 
     args = parser.parse_args()
+
+    if args.optimized_path is None:
+        if args.config is None:
+            parser.error("provide --config / -c or --optimized_path / -o")
+        with open(args.config) as f:
+            args.optimized_path = yaml.load(f, Loader=yaml.FullLoader)["output_dirpath"]
 
     config_filepath = os.path.join(args.optimized_path, "config.yaml")
     if not os.path.exists(config_filepath):

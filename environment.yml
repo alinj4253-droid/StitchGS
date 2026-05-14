@@ -1,0 +1,25 @@
+name: stitchgs
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10.15
+  - pytorch=1.12.1
+  - torchvision=0.13.1
+  - torchaudio=0.12.1
+  - cudatoolkit=11.6.2
+  - pillow=9.4.0
+  - tqdm=4.67.1
+  - pip=22.3.1
+  - pip:
+      - numpy==1.26.4
+      - scipy==1.15.3
+      - pyyaml==6.0.2
+      - easydict==1.13
+      - matplotlib==3.10.5
+      - open3d==0.19.0
+      - opencv-python==4.7.0.72
+      - plyfile==1.1.2
+      - joblib==1.5.1
+
